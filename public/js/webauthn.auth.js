@@ -90,20 +90,16 @@
             .then(handleErrors)
             .then(prepare)
             .then(function (response) {
-                console.log(response.id)
                 let request = preformatMakeCredReq(response.fidoRequest)
-                console.log(publicKeyCredentialToJSON(request))
                 return request
             })
     }
 
     // Send response for registration
     let sendWebAuthnRegResponse = (cred) => {
-        console.log(publicKeyCredentialToJSON(cred))
         let body = {
             "fidoResponse": JSON.stringify(publicKeyCredentialToJSON(cred))
         }
-        console.log(body)
         return fetch(endpoint + '/registrations/', {
             method: 'PATCH',
             headers: header,
@@ -125,9 +121,7 @@
             .then(handleErrors)
             .then(prepare)
             .then(function (response) {
-                console.log(response.id)
                 let request = preformatGetAssertReq(response.fidoRequest)
-                console.log(publicKeyCredentialToJSON(request))
                 return request
             })
     }

@@ -77,14 +77,12 @@
           $('#result').text('call credentials.create...')
           return fido2.preformatMakeCredReq(params)
         }).then(params => {
-          console.log(params)
           return navigator.credentials.create({"publicKey": params})
         }).then(credential => {
           let credJson = {
             // Because credential include ArrayBuffer, translate its format to send data to server
             "fidoResponse": JSON.stringify(fido2.publicKeyCredentialToJSON(credential))
           }
-          console.log(credJson)
           $('#result').text(JSON.stringify(credJson))
         }).catch((error) => {
           $('#result').text(error)
@@ -104,7 +102,6 @@
             // Because credential include ArrayBuffer, translate its format to send data to server
             "fidoResponse": JSON.stringify(fido2.publicKeyCredentialToJSON(assertion))
           }
-          console.log(assertionJson)
           $('#result').text(JSON.stringify(assertionJson))
         }).catch((error) => {
           $('#result').text(error)

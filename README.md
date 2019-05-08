@@ -1,17 +1,26 @@
-# Getting Started
+# Quado FIDO2/WebAuthn Relying Party Sample
+
 This is a sample code for understanding how to integrate Quado in your relying party.
 Server side code is written in Express.js and front side code is written in pure javascript.
 
 First of all, you need to sign up [Quado console](https://quado.io) to get API key for your relying party.Please refer to [Configure Quado](https://doc.quado.io/setting\_up\_quado/#get-api-key) for more details.
 
+**NOTE:** For simplicity, this sample uses localstorage of browser in order to manage users. Thus, username, password and uid are saved in browser. In a production environment, you should implement user management functionality on server side.
+
+## Live Demo
+
 **[VIEW LIVE DEMO](https://demo.quado.io)**
 
-## Note
+## Supported Browser
 
-For simplicity, this sample uses browser's localstorage to manage users. Thus, username and password are saved in browser.
-In a production environment, you should implement user management functionality on server-side.
+| <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/edge/edge_512x512.png" alt="Edge" width="48px" height="48px" /></br> Microsoft Edge | <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/firefox/firefox_512x512.png" alt="Firefox" width="48px" height="48px" /></br> Mozilla Firefox | <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/chrome/chrome_512x512.png" alt="Chrome" width="48px" height="48px" /></br> Google Chrome | <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/35.1.0/safari/safari_512x512.png" alt="Safari" width="48px" height="48px" /></br> Safari
+| --- | --- | --- | --- | --- | --- | ---
+| 18+ | 60+ | 67+ | - |
 
-## Setup
+
+## Installation
+
+
 
 Install dependencies.
 
@@ -36,7 +45,9 @@ node app.js
 ```
 **Confirm that this server URL corresponds with URL which you specified in Quado console.**
 
-## Registration
+## Usage 
+
+### Registration
 After sign up and click "Register new FIDO2 device" button, you can see registration page below.
 
 <img src="fig/registration.png" width="700">
@@ -50,7 +61,14 @@ The value "cross-platform" value indicates a roaming authenticator, such as a se
 Once your FIDO key was registered, you can see registered key from "/top.html".
 
 
-## Authentication
+### Authentication
 After registration, you can try authentication from "/auth.html".
 
 <img src="fig/authentication.png" width="700">
+
+## License
+
+[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
+
+- **[MIT license](http://opensource.org/licenses/mit-license.php)**
+- Copyright 2019 © <a href="https://www.quado.io" target="_blank">Quado, Inc.</a>.
