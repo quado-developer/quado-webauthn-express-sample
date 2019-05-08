@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>FIDO RP Demo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+    <script src="js/base64url-arraybuffer.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/webauthn.auth.js"></script>
+</head>
+
+<body>
+<header class="navbar navbar-dark bg-info">
+    <div class="container">
+        <a class="navbar-brand mr-0 mr-md-2" href="#" onclick="app.moveToRoot(); return false;">FIDO RP Demo</a>
+        <div class="btn-group">
+            <button class="btn dropdown-toggle" type="button" id="accountMenuButton" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" x-placement="bottom-end"
+                 style="position: absolute; transform: translate3d(-88px, 38px, 0px); top: 0px; left: 0px; will-change: transform;"
+                 aria-labelledby="accountMenuButton">
+                <a class="dropdown-item" rel="nofollow" onclick="app.logout(); return false;">Logout</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div id="challenge" class="container mt-8">
+    <div class="card devise-bs mx-auto mt-4">
+        <div class="card-header">
+            <h5>FIDO2 Sandbox</h5>
+        </div>
+        <div class="card-body">
+            <div class="form-row justify-content-md-center">
+                <div class="form-group col-md-12">
+                    <label for="publicKeyParams">Parameters</label>
+                    <textarea id="publicKeyParams" class="form-control" rows="10"></textarea>
+                </div>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary" onclick="register()">Call credentials.create</button>
+                <button type="submit" class="btn btn-primary" onclick="authenticate()">Call credentials.get</button>
+            </div>
+            <br />
+            <p>Result</p>
+            <div id="result">-- Waiting --</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function getParams() {
+        return new Promise((resolve, reject) => {
+          let paramStr = $('#publicKeyParams').val()
+          if (paramStr.length === 0) {
+            throw new Error('Please input parameters')
+          }
+          resolve(JSON.parse(paramStr))
+        })
+    }
+
+    function register() {
+        getParams()
+        .then(params => {
+          $('#result').text('call credentials.create...')
+          return fido2.preformatMakeCredReq(params)
+        }).then(params => {
+          console.log(params)
+          return navigator.credentials.create({"publicKey": params})
+        }).then(credential => {
+          let credJson = {
+            // Because credential include ArrayBuffer, translate its format to send data to server
+            "fidoResponse": JSON.stringify(fido2.publicKeyCredentialToJSON(credential))
+          }
+          console.log(credJson)
+          $('#result').text(JSON.stringify(credJson))
+        }).catch((error) => {
+          $('#result').text(error)
+          alert(error)
+        })
+    }
+
+    function authenticate() {
+        getParams()
+        .then(params => {
+          $('#result').text('call credentials.get...')
+          return fido2.preformatGetAssertReq(params)
+        }).then(params => {
+          return navigator.credentials.get({"publicKey": params})
+        }).then(assertion => {
+          let assertionJson = {
+            // Because credential include ArrayBuffer, translate its format to send data to server
+            "fidoResponse": JSON.stringify(fido2.publicKeyCredentialToJSON(assertion))
+          }
+          console.log(assertionJson)
+          $('#result').text(JSON.stringify(assertionJson))
+        }).catch((error) => {
+          $('#result').text(error)
+          alert(error)
+        })
+    }
+</script>
+
+</body>
+</html>
