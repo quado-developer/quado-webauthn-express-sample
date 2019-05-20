@@ -47,36 +47,56 @@
             <h5>FIDO2 Registration</h5>
         </div>
         <div class="card-body">
+
             <div class="form-row justify-content-md-center">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-9">
                     <label for="authenticatorAttachment">authenticatorAttachment</label>
                     <select id="authenticatorAttachment" class="form-control">
                         <option selected>platform</option>
                         <option>cross-platform</option>
                     </select>
-                </div>
-                <div class="form-group col-md-3">
-                    <label for="userVerification">userVerification</label>
-                    <select id="userVerification" class="form-control">
-                        <option selected>preferred</option>
-                        <option>required</option>
-                        <option>discouraged</option>
-                    </select>
+                    <span id="help8" class="form-text text-muted" style="font-size: 0.8em">
+                        <table>
+                            <tr>
+                                <td >platform:&ensp;</td>
+                                <td>platform authenticator, such as Windows Hello or MacOS's TouchID</td>
+                            </tr>
+                            <tr>
+                                <td >cross-platform:&ensp;</td>
+                                <td>roaming authenticator, such as a USB security key</td>
+                            </tr>
+                        </table>
+                    </span>
+
                 </div>
 
-                <div class="form-group col-md-3">
-                    <label for="requireResidentKey">requireResidentKey</label>
-                    <select id="requireResidentKey" class="form-control">
-                        <option selected>false</option>
-                        <option>true</option>
-                    </select>
-                </div>
             </div>
 
             <div class="form-row justify-content-md-center">
-                <div class="col-md-3">
+                <div class="form-group col-md-9">
+                    <a data-toggle="collapse" href="#options" aria-expanded="false" aria-controls="collapseExample">Options</a>
+                </div>
+            </div>
 
-                    <div class="form-group col-md-12">
+            <div class="collapse" id="options">
+                <div class="form-row justify-content-md-center">
+                    <div class="form-group col-md-3">
+                        <label for="userVerification">userVerification</label>
+                        <select id="userVerification" class="form-control">
+                            <option selected>preferred</option>
+                            <option>required</option>
+                            <option>discouraged</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group col-md-3">
+                        <label for="requireResidentKey">requireResidentKey</label>
+                        <select id="requireResidentKey" class="form-control">
+                            <option selected>false</option>
+                            <option>true</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-3">
                         <label for="attestation">attestation</label>
                         <select id="attestation" class="form-control">
                             <option selected>none</option>
@@ -84,20 +104,24 @@
                             <option>direct</option>
                         </select>
                     </div>
-                    <div class="form-group col-md-12">
-                        <label for="timeout">timeout(ms)</label>
-                        <input type="number" id="timeout" class="form-control" value="10000"/>
+                </div>
+
+                <div class="form-row justify-content-md-center">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="timeout">timeout(ms)</label>
+                            <input type="number" id="timeout" class="form-control" value="10000"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="extensions">Extensions</label>
+                        <textarea class="form-control" id="extensions" rows="5"></textarea>
                     </div>
                 </div>
-
-                <div class="form-group col-md-6">
-                    <label for="extensions">Extensions</label>
-                    <textarea class="form-control" id="extensions" rows="5"></textarea>
-                </div>
             </div>
-
-            <div class="text-center">
-                <button type="submit" class="btn btn-primary" onclick="register()">Start Registration</button>
+            <div class="form-row justify-content-md-center mt-3">
+                    <button type="submit" class="btn btn-primary col-md-3" onclick="register()">Start Registration</button>
             </div>
         </div>
     </div>
