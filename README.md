@@ -32,20 +32,21 @@ yarn install
 npm install
 ```
 
-Specify your API key in `app.js` file.
+Specify your API key and API endpoint in `app.js` file.
 
 ``` javascript
 const API_KEY = "YOUR_API_KEY"
+const ENDPOINT = "https://api.quado.io/webauthn/api/v1"
 ```
 
-Start web server and you can access `http://localhost:2000`. 
+Start web server and you can access `http://localhost:2000`.
 
 ``` bash
 node app.js
 ```
 **Confirm that this server URL corresponds with URL which you specified in Quado console.**
 
-## Usage 
+## Usage
 
 ### Registration
 After sign up and click "Register new FIDO2 device" button, you can see registration page below.
@@ -54,9 +55,9 @@ After sign up and click "Register new FIDO2 device" button, you can see registra
 
 Click "Start Registration" to register new FIDO key.
 
-**NOTE:** The optional `authenticatorAttachment` attribute filters eligible authenticator by type. 
+**NOTE:** The optional `authenticatorAttachment` attribute filters eligible authenticator by type.
 The value “platform” indicates a platform authenticator, such as Windows Hello or MacOS's TouchID.
-The value "cross-platform" value indicates a roaming authenticator, such as a security key. 
+The value "cross-platform" value indicates a roaming authenticator, such as a security key.
 
 Once your FIDO key was registered, you can see registered key from "/top.html".
 
