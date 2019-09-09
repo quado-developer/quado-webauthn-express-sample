@@ -81,7 +81,13 @@
 
     // Create challenge for registration
     let getMakeCredentialsChallenge = (uid, username, authenticatorSelection, attestation, timeout, extensions) => {
-        let body = {uid, username, authenticatorSelection, timeout, attestation}
+        let body = {uid,
+                    params: {
+                        user: {name: username, displayName: username},
+                        authenticatorSelection,
+                        timeout,
+                        attestation}
+                    }
         return fetch(endpoint + '/registrations', {
             method: 'POST',
             headers: header,
@@ -90,7 +96,7 @@
             .then(handleErrors)
             .then(prepare)
             .then(function (response) {
-                let request = preformatMakeCredReq(response.fidoRequest)
+                let request = preformatMakeCredReq(response.fido_request)
                 return request
             })
     }
@@ -112,7 +118,13 @@
 
     // Create challenge for authentication
     let getGetAssertionChallenge = (uid, userVerification = 'preferred', timeout=10000, extensions=null) => {
-        let body = {uid, userVerification, timeout, extensions}
+        let body = {uid,
+                    params: {
+                        userVerification,
+                        timeout,
+                        extensions}
+                    }
+
         return fetch(endpoint + '/authentications', {
             method: 'POST',
             headers: header,
@@ -121,7 +133,7 @@
             .then(handleErrors)
             .then(prepare)
             .then(function (response) {
-                let request = preformatGetAssertReq(response.fidoRequest)
+                let request = preformatGetAssertReq(response.fido_request)
                 return request
             })
     }
