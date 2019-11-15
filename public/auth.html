@@ -53,9 +53,9 @@
                     <div class="form-group col-md-12">
                         <label for="userVerification">userVerification</label>
                         <select id="userVerification" class="form-control">
-                            <option selected>preferred</option>
+                            <option >preferred</option>
                             <option>required</option>
-                            <option>discouraged</option>
+                            <option selected>discouraged</option>
                         </select>
                     </div>
                     <div class="form-group col-md-12">
@@ -82,7 +82,7 @@
 
         let uid = app.getCurrentUID()
         let userVerification = $('#userVerification').val();
-        let timeout = $('#timeout').val();
+        let timeout = Number($('#timeout').val());
         let extensionsStr = $('#extensions').val();
         let extensions = null;
         if (extensionsStr && extensionsStr.length > 0) {

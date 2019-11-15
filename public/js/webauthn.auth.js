@@ -104,10 +104,9 @@
     // Send response for registration
     let sendWebAuthnRegResponse = (cred) => {
         let body = {
-            // "fidoResponse": JSON.stringify(publicKeyCredentialToJSON(cred))
-            "fidoResponse": publicKeyCredentialToJSON(cred)
+            "fido_response": publicKeyCredentialToJSON(cred)
         }
-        return fetch(endpoint + '/registrations/', {
+        return fetch(endpoint + '/registrations', {
             method: 'PATCH',
             headers: header,
             body: JSON.stringify(body)
@@ -142,8 +141,7 @@
     // Send response for authentication
     let sendWebAuthnAuthResponse = (assertion) => {
         let body = {
-            // "fidoResponse": JSON.stringify(publicKeyCredentialToJSON(assertion))
-            "fidoResponse": publicKeyCredentialToJSON(assertion)
+            "fido_response": publicKeyCredentialToJSON(assertion)
         }
         return fetch(endpoint + '/authentications', {
             method: 'PATCH',

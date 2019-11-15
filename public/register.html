@@ -52,8 +52,8 @@
                 <div class="form-group col-md-9">
                     <label for="authenticatorAttachment">authenticatorAttachment</label>
                     <select id="authenticatorAttachment" class="form-control">
-                        <option selected>platform</option>
-                        <option>cross-platform</option>
+                        <option>platform</option>
+                        <option selected>cross-platform</option>
                     </select>
                     <span id="help8" class="form-text text-muted" style="font-size: 0.8em">
                         <table>
@@ -83,9 +83,9 @@
                     <div class="form-group col-md-3">
                         <label for="userVerification">userVerification</label>
                         <select id="userVerification" class="form-control">
-                            <option selected>preferred</option>
+                            <option>preferred</option>
                             <option>required</option>
-                            <option>discouraged</option>
+                            <option selected>discouraged</option>
                         </select>
                     </div>
 
@@ -135,9 +135,9 @@
 
         let authenticatorAttachment = $('#authenticatorAttachment').val();
         let userVerification = $('#userVerification').val();
-        let requireResidentKey = $('#requireResidentKey').val();
+        let requireResidentKey = $('#requireResidentKey').val() === "true";
         let attestation = $('#attestation').val();
-        let timeout = $('#timeout').val();
+        let timeout = Number($('#timeout').val());
         let extensionsStr = $('#extensions').val();
 
         let authenticatorSelection = {authenticatorAttachment, userVerification, requireResidentKey}

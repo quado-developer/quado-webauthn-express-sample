@@ -35,7 +35,7 @@ app.post("/registrations", (req, res) => {
 
 app.patch("/registrations", (req, res) => {
   request({
-    url: ENDPOINT + '/registrations/' + req.body.messageId,
+    url: ENDPOINT + '/registrations',
     method: "PATCH",
     headers: req.headers,
     json: req.body
@@ -53,7 +53,7 @@ app.post("/authentications", (req, res) => {
 
 app.patch("/authentications", (req, res) => {
   request({
-    url: ENDPOINT + '/authentications/' + req.body.messageId,
+    url: ENDPOINT + '/authentications',
     method: "PATCH",
     headers: req.headers,
     json: req.body
