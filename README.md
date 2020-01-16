@@ -3,7 +3,8 @@
 This is a sample code for understanding how to integrate Quado in your relying party.
 Server side code is written in Express.js and front side code is written in pure javascript.
 
-First of all, you need to sign up [Quado console](https://quado.io) to get API key for your relying party. Please refer to [Configure Quado](https://doc.quado.io/quick_start/#register-new-relying-party) for more details.
+First of all, you need to sign up [Quado console](https://quado.io) to get API key for your relying party.
+Please refer to [Configure Quado](https://doc.quado.io/quick_start/#register-new-relying-party) for more details.
 
 **NOTE:** For simplicity, this sample uses localstorage of browser in order to manage users. Thus, username, password and uid are saved in browser. In a production environment, you should implement user management functionality on server side.
 
@@ -33,7 +34,7 @@ Set the parameters below on "CONFIGURATION" page of [Quado management console](h
 
 |  Parameter  |  Value |
 | ---- | ---- |
-|  Allowed domain  |  localhsot  |
+|  Allowed domain  |  localhost  |
 |  Allowed origins  |  http://localhost:2000  |
 
 Specify your API key and API endpoint in `app.js` file.
@@ -52,6 +53,7 @@ node app.js
 ## Usage
 
 ### Registration
+
 After sign up and click "Register new FIDO2 device" button, you can see registration page below.
 
 <img src="fig/registration.png" width="700">
@@ -64,8 +66,8 @@ The value "cross-platform" value indicates a roaming authenticator, such as a se
 
 Once your FIDO key was registered, you can see registered key from "/top.html".
 
-
 ### Authentication
+
 After registration, you can try authentication from "/auth.html".
 
 <img src="fig/authentication.png" width="700">

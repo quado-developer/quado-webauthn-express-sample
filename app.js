@@ -5,7 +5,7 @@ const app = express()
 app.use(bodyParser.json());
 
 // Set API_KEY value to your API key
-const API_KEY = "<API key>"
+const API_KEY = "YOUR_API_KEY"
 const ENDPOINT = "https://test-api.quado.io/webauthn/api/v1"
 
 const PORT = 2000
