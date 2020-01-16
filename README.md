@@ -3,7 +3,7 @@
 This is a sample code for understanding how to integrate Quado in your relying party.
 Server side code is written in Express.js and front side code is written in pure javascript.
 
-**NOTE:** For simplicity, this sample uses localstorage of browser in order to manage users. Thus, username, password and uid are saved in browser. In a production environment, you should implement user management functionality on server side.
+**NOTE:** For simplicity, this sample save account data (e.g.: username, password) in localstorage on browser. In a production environment, you should save these data on your server.
 
 ## Live Demo
 
@@ -29,7 +29,7 @@ Set the parameters below on "CONFIGURATION" page of Quado console.
 |  Allowed domain  |  localhost  |
 |  Allowed origins  |  http://localhost:2000  |
 
-**NOTE:** If you run this server in another domain, change these parameters according to your environment.
+**NOTE:** If you run this server in another domain, replace these parameters according to your environment.
 
 You can find `API key` and `API endpoint` in the bottom of `CONFIGURATION` page. These values will be used later.
 
